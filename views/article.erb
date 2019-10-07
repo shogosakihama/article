@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="jumbotron">
+      <div class="row">    
+        <div class="col-sm-5 book">          
+          <img class="image" src="../images/プラネテス_画像イメージ.jpg">
+        </div>
+        
+        <div class="col-sm-7 book">  
+           <form action="/" method="post">
+
+            <textarea placeholder="タイトル" type="text" style="width:100%;height:20%;" name="title"></textarea>        
+            <textarea placeholder="本文" type="text" style="margin-top:44px;width:100%;height:70%;" name="review"></textarea>
+            <button type="submit" class="btn btn-outline-primary" style="margin-left:460px;margin-top:10px; padding-bottom:10px;transform:scale(1.5)">投稿する</button>
+          </form>
+       <p><%= @title %> <br> <%= @review %></p>
+
+       </div> 
+      
+          <p class="author" style="margin-left:100px;margin-top:10px;">プラネテス　幸村誠</p>
+          <p>
+            
+            
+            
+            <!-- Modal -->
+            <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ログイン</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="login-form">
+                      <input class="form-control" type="text" placeholder="メールアドレス">
+                      <input class="form-control" type="password" placeholder="パスワード">
+                    </div>
+                    <div class="btn-group btn-group-toggle d-none" data-toggle="buttons">
+                      <label class="btn btn-secondary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 男性
+                      </label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> 女性
+                      </label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> 其の他
+                      </label>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                    <button type="button" class="btn btn-primary">ログインする</button>
+                  </div>
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">新規登録</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div id="login-form">
+                        <input class="form-control" type="text" placeholder="メールアドレス">
+                        <input class="form-control" type="password" placeholder="パスワード">
+                        <input class="form-control" type="password" placeholder="使用するユーザーネーム">
+                        
+                      </div>
+                      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                          <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 男性
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" id="option2" autocomplete="off"> 女性
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" id="option2" autocomplete="off"> 其の他
+                        </label>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--modal_end-->
+              </p>
+            </div>
+          </div>
+      </div>
+   </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <button type="button" type="submit" class="btn btn-outline-primary d-none" style="margin-left:460px;margin-top:10px; padding-bottom:10px;transform:scale(1.5)">投稿する</button>
+        </div>
+      </div>

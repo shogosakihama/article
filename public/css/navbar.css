@@ -1,0 +1,48 @@
+body {
+  /*padding-top: 20px;*/
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.jumbotron {
+  margin:10px 0;
+  padding-bottom:5px;
+}
+
+.login-modal-wrapper {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: none;
+}
+.a {margin-right:10px;}
+
+#login-form input{
+  margin:20px 0;
+
+}
+
+.image {
+  height:100%;
+}
+
+.book {
+  display:inLine-block;
+}
+
+
+
+
+.btn-outline-primary {
+  margin-top:50px;
+  float:center;
+}
+
+.author {
+  float:center;
+}
