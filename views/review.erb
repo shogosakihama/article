@@ -1,82 +1,88 @@
   <body>
     <div class="container">
-      <div class="jumbotron">
+      
         <div class="col-sm-8 mx-auto">
-          <a href="http://localhost:4567/" class="book_name" style="font-size: 50px;">プラネテス　　　幸村誠</a>
-          <p class="d-none">本文少しだけ表示</p>
-          <p class="d-none">This example is a quick exercise to illustrate how the navbar and its contents work. Some navbars extend the width of the viewport, others are confined within a <code>.container</code>. For positioning of navbars, checkout the <a href="https://v4-alpha.getbootstrap.com/examples/navbar-top/">top</a> and <a href="https://v4-alpha.getbootstrap.com/examples/navbar-top-fixed/">fixed top</a> examples.</p>
-          <p class="d-none">At the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to toggle the collapsed content.</p>
+      <table>
+        <tr><th>Id</th><th>タイトル</th></tr>
+        <% @posts.each do |post| %>
+           <tr>
+              <td><%= post.id %></td>
+              <td><a href='/show/<%= post.id %>'><%=post.title %></a></td>
+           </tr>
+           <% end %>
+      </table>
           <p>
-            <a class="btn btn-primary d-none" href="https://v4-alpha.getbootstrap.com/components/navbar/" role="button">レビュー ALL »</a>
-            <a class="btn btn-primary d-none" href="https://v4-alpha.getbootstrap.com/components/navbar/" role="button">ログイン/登録»</a>
+          <p></p>
+          <p><a href = '/new'>新規メモ</p>
+
             
               
               <!-- Modal -->
-<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">ログイン</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div id="login-form">
-             <input class="form-control" type="text" placeholder="メールアドレス">
-             <input class="form-control" type="password" placeholder="パスワード">
-            </div>
-          <div class="btn-group btn-group-toggle d-none" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-              <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 男性
-            </label>
-            <label class="btn btn-secondary">
-              <input type="radio" name="options" id="option2" autocomplete="off"> 女性
-            </label>
-            <label class="btn btn-secondary">
-              <input type="radio" name="options" id="option2" autocomplete="off"> 其の他
-            </label>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-          <button type="button" class="btn btn-primary">ログインする</button>
-        </div>
-        <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">新規登録</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <div id="login-form">
-                 <input class="form-control" type="text" placeholder="メールアドレス">
-                 <input class="form-control" type="password" placeholder="パスワード">
-                 <input class="form-control" type="password" placeholder="使用するユーザーネーム">
+          <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ログイン</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      <div id="login-form">
+                      <input class="form-control" type="text" placeholder="メールアドレス">
+                      <input class="form-control" type="password" placeholder="パスワード">
+                      </div>
+                    <div class="btn-group btn-group-toggle d-none" data-toggle="buttons">
+                      <label class="btn btn-secondary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 男性
+                      </label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> 女性
+                      </label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> 其の他
+                      </label>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                    <button type="button" class="btn btn-primary">ログインする</button>
+                  </div>
+                  <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">新規登録</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                          <div id="login-form">
+                          <input class="form-control" type="text" placeholder="メールアドレス">
+                          <input class="form-control" type="password" placeholder="パスワード">
+                          <input class="form-control" type="password" placeholder="使用するユーザーネーム">
 
+                          </div>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                          <label class="btn btn-secondary active">
+                            <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 男性
+                          </label>
+                          <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="option2" autocomplete="off"> 女性
+                          </label>
+                          <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="option2" autocomplete="off"> 其の他
+                          </label>
+                        </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                    <button type="button" class="btn btn-primary">保存</button>
+                  </div>
                 </div>
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                  <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 男性
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="options" id="option2" autocomplete="off"> 女性
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="options" id="option2" autocomplete="off"> 其の他
-                </label>
               </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-          <button type="button" class="btn btn-primary">保存</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--modal_end-->
+            </div>
+            <!--modal_end-->
           </p>
         </div>
-      </div>
+      
       
     </div>

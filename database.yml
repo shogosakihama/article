@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql #posgresqlの場合
+  database: memo # データベース作成時に [create database データベース名] で指定した名前
+  host: #ここは指定しない
+  username: shogo_sakihama #ユーザー名
+  password: 
+  encoding: utf8

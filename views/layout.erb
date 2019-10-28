@@ -13,10 +13,10 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/navbars/">
   
   <!-- Bootstrap core CSS -->
-  <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
   
   <!-- Custom styles for this template -->
-  <link href="./css/navbar.css" rel="stylesheet">
+  <link href="/css/navbar.css" rel="stylesheet">
 </head>
 <body>
   <head>
@@ -30,13 +30,13 @@
       <ul class="navbar-nav mr-auto">
         
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost:4567/a">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="http://localhost:4567">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="http://localhost:4567/b">レビュー ALL</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="http://localhost:4567/">投稿する</a>
+          <a class="nav-link" href="/new">投稿する</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle d-none" href="http://example.com/" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -55,6 +55,71 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
+       <!-- Modal -->
+            <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ログイン</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="login-form">
+                      <input class="form-control" type="text" placeholder="メールアドレス">
+                      <input class="form-control" type="password" placeholder="パスワード">
+                    </div>
+                    <div class="btn-group btn-group-toggle d-none" data-toggle="buttons">
+                      <label class="btn btn-secondary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 男性
+                      </label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> 女性
+                      </label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> 其の他
+                      </label>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                    <button type="button" class="btn btn-primary">ログインする</button>
+                  </div>
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">新規登録</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div id="login-form">
+                        <input class="form-control" type="text" placeholder="メールアドレス">
+                        <input class="form-control" type="password" placeholder="パスワード">
+                        <input class="form-control" type="password" placeholder="使用するユーザーネーム">
+                        
+                      </div>
+                      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                          <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 男性
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" id="option2" autocomplete="off"> 女性
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" id="option2" autocomplete="off"> 其の他
+                        </label>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--modal_end-->
+            
   </nav>
 
   </head>
@@ -72,12 +137,12 @@
 <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./Navbar Template for Bootstrap_files/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="/Navbar Template for Bootstrap_files/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="./Navbar Template for Bootstrap_files/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="./Navbar Template for Bootstrap_files/bootstrap.min.js"></script>
+    <script src="/Navbar Template for Bootstrap_files/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="/Navbar Template for Bootstrap_files/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="./Navbar Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
+    <script src="/Navbar Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
     
     <!-- bootstrapcheet -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -86,7 +151,7 @@
 
 
 <%# なぜか下記エラ %>
-<%# <gdiv class="ginger-extension-writer" style="display: none;"><gdiv class="ginger-extension-writer-frame"><iframe src="./Navbar Template for Bootstrap_files/index.html"></iframe></gdiv></gdiv> %>
+<%# <gdiv class="ginger-extension-writer" style="display: none;"><gdiv class="ginger-extension-writer-frame"><iframe src="/Navbar Template for Bootstrap_files/index.html"></iframe></gdiv></gdiv> %>
 
 
 
