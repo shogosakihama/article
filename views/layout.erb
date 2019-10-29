@@ -95,12 +95,15 @@
                     </div>
                     <div class="modal-body">
                       <div id="login-form">
-                        <input class="form-control" type="text" placeholder="メールアドレス">
-                        <input class="form-control" type="password" placeholder="パスワード">
-                        <input class="form-control" type="password" placeholder="使用するユーザーネーム">
-                        
+                         <form action="/signup" method="post">
+                            <input class="form-control" name="email" type="text" placeholder="メールアドレス">
+                            <input class="form-control" name="password" type="password" placeholder="パスワード">
+                            <input class="form-control" name="name" type="password" placeholder="使用するユーザーネーム">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                            <button type="submit" class="btn btn-primary">保存</button>
+                          </form>
                       </div>
-                      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                      <div class="btn-group btn-group-toggle d-none" data-toggle="buttons">
                         <label class="btn btn-secondary active">
                           <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 男性
                         </label>
@@ -108,12 +111,11 @@
                           <input type="radio" name="options" id="option2" autocomplete="off"> 女性
                         </label>
                         <label class="btn btn-secondary">
-                          <input type="radio" name="options" id="option2" autocomplete="off"> 其の他
+                          <input  type="radio" name="options" id="option2" autocomplete="off"> 其の他
                         </label>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                        <button type="button" class="btn btn-primary">保存</button>
+                        
                       </div>
                     </div>
                   </div>

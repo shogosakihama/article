@@ -18,6 +18,11 @@ client = PG::connect(      #test
 class Post < ActiveRecord::Base
 end
 
+class User < ActiveRecord::Base
+end
+
+
+
 get '/show/:id' do
     @post = Post.find(params['id'])
     erb :show
@@ -59,6 +64,11 @@ end
 post '/create' do
   post = Post.create({title: params['title'], content: params['content']})
   redirect "/show/#{post.id}"
+end
+
+post '/signup' do
+  post = User.create({name: params['name'], email: params['email'], password: params['password']})
+  redirect "/"
 end
 
 get '/destroy/:id' do

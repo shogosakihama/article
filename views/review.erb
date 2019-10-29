@@ -3,10 +3,10 @@
       
         <div class="col-sm-8 mx-auto">
       <table>
-        <tr><th>Id</th><th>タイトル</th></tr>
+        <tr><th>タイトル</th></tr>
         <% @posts.each do |post| %>
            <tr>
-              <td><%= post.id %></td>
+              
               <td><a href='/show/<%= post.id %>'><%=post.title %></a></td>
            </tr>
            <% end %>
