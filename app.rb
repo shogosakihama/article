@@ -3,6 +3,8 @@ require 'sinatra/reloader'
 require 'erb'
 require 'active_record' #test
 require 'pg'   #test
+enable :sessions
+
 
 ActiveRecord::Base.configurations = YAML.load_file("database.yml")
 ActiveRecord::Base.establish_connection(:development)
@@ -42,11 +44,6 @@ get '/b' do
   erb :review
 end
 
-get '/b' do
-  @posts = Post.all
-  erb :review
-end
-
 post '/update/:id' do
   post = Post.find(params['id'])
 
@@ -77,8 +74,35 @@ get '/destroy/:id' do
 end
 
 
-post '/c' do
-  @title =params[:title]
-  @review =params[:review]
-  erb :article
+
+
+get '/login' do
+  erb :login
+end
+
+
+post '/login' do
+mail = params[:email]
+pass = params[:password]
+users = User.all
+users.each do |user|
+  if user[:email] == mail
+    if user[:password] == pass
+      @user = user
+      session[:name] = user[:name]
+      return erb :mypage
+    end
+  end
+end
+redirect to ('/login')
+end
+
+get '/mypage' do
+@user = { name: "No User" }
+users.each do |user|
+  if user[:name] == session[:name]
+    @user = user
+  end
+end
+erb :mypage
 end

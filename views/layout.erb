@@ -36,8 +36,14 @@
           <a class="nav-link" href="http://localhost:4567/b">レビュー ALL</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/new">投稿する</a>
+           <% zaiko = 2%>
+          <a class="nav-link" href="/new">
+          <% if zaiko == 2 then %>
+          投稿する
+          <% end %>
+          </a>
         </li>
+       <p> <%= @posts %></p>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle d-none" href="http://example.com/" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
