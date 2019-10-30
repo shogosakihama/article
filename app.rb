@@ -3,6 +3,7 @@ require 'sinatra/reloader'
 require 'erb'
 require 'active_record' #test
 require 'pg'   #test
+require 'sinatra/cookies'
 enable :sessions
 
 
@@ -15,8 +16,6 @@ client = PG::connect(      #test
   :dbname => "memo")
 
   
-  
-  
 class Post < ActiveRecord::Base
 end
 
@@ -25,27 +24,54 @@ end
 
 
 
+
+post '/login' do
+  mail = params[:email]
+  pass = params[:password]
+  users = User.all
+  users.each do |user|
+    if user[:email] == mail
+      if user[:password] == pass
+        @user = user
+        session[:name] = user[:name]
+        @session =session[:name]
+        return erb :mypage
+      end
+    end
+  end
+  redirect to ('/login')
+  end
+
+  before do
+    @session =session[:name]
+  end
+
 get '/show/:id' do
     @post = Post.find(params['id'])
+    @session =session[:name]
     erb :show
 end
 
 get '/edit/:id' do
   @post = Post.find(params['id'])
+  @session =session[:name]
   erb :article
 end
 
 get '/' do
+  @session =session[:name]
   erb :top
 end
 
 get '/b' do
+  @session =session[:name]
   @posts = Post.all
   erb :review
 end
 
 post '/update/:id' do
   post = Post.find(params['id'])
+  @session =session[:name]
 
   post.title = params['title']
   post.content = params['content']
@@ -55,20 +81,24 @@ post '/update/:id' do
 end
 
 get '/new' do
+  @session =session[:name]
   erb :new
 end
 
 post '/create' do
+  @session =session[:name]
   post = Post.create({title: params['title'], content: params['content']})
   redirect "/show/#{post.id}"
 end
 
 post '/signup' do
+  @session =session[:name]
   post = User.create({name: params['name'], email: params['email'], password: params['password']})
   redirect "/"
 end
 
 get '/destroy/:id' do
+  @session =session[:name]
   Post.find(params['id']).destroy
   redirect '/b'
 end
@@ -81,21 +111,10 @@ get '/login' do
 end
 
 
-post '/login' do
-mail = params[:email]
-pass = params[:password]
-users = User.all
-users.each do |user|
-  if user[:email] == mail
-    if user[:password] == pass
-      @user = user
-      session[:name] = user[:name]
-      return erb :mypage
-    end
-  end
-end
-redirect to ('/login')
-end
+
+
+
+
 
 get '/mypage' do
 @user = { name: "No User" }
