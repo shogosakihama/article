@@ -40,7 +40,26 @@ post '/login' do
   redirect to ('/login')
   end
 
+  post '/signup' do
+    @session =session[:name]
+    post = User.create({name: params['name'], email: params['email'], password: params['password']})
+    redirect "/"
+  end
 
+get '/log_out' do
+  @session =session[:name]
+  erb :log_out
+end
+
+get '/log_out_do' do
+  @session =session[:name]
+  erb :log_out_do
+end
+
+post '/log_out' do
+  session[:name] = nil
+  redirect '/'
+end
 
 get '/show/:id' do
     @post = Post.find(params['id'])
@@ -85,12 +104,6 @@ post '/create' do
   @session =session[:name]
   post = Post.create({title: params['title'], content: params['content']})
   redirect "/show/#{post.id}"
-end
-
-post '/signup' do
-  @session =session[:name]
-  post = User.create({name: params['name'], email: params['email'], password: params['password']})
-  redirect "/"
 end
 
 get '/destroy/:id' do
