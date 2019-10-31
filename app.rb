@@ -23,8 +23,6 @@ class User < ActiveRecord::Base
 end
 
 
-
-
 post '/login' do
   mail = params[:email]
   pass = params[:password]
@@ -42,9 +40,7 @@ post '/login' do
   redirect to ('/login')
   end
 
-  before do
-    @session =session[:name]
-  end
+
 
 get '/show/:id' do
     @post = Post.find(params['id'])
