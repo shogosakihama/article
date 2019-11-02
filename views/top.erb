@@ -14,9 +14,12 @@
             <a class="btn btn-primary" href="http://localhost:4567/b" role="button">レビュー ALL »</a>
             <a class="btn btn-primary d-none" id="login-show" href="#" role="button">ログイン/登録»</a>
             <!-- Button trigger modal -->
+     <% unless @session then %>
 <button type="button" class="b btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   ログイン/登録
 </button>
+     <% end %>
+
 
 
           </p>

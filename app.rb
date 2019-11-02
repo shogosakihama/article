@@ -22,6 +22,10 @@ end
 class User < ActiveRecord::Base
 end
 
+get '/searchbox' do
+  @posts = Post.all
+  erb :searchbox
+end
 
 post '/login' do
   mail = params[:email]
@@ -41,9 +45,21 @@ post '/login' do
   end
 
   post '/signup' do
-    @session =session[:name]
     post = User.create({name: params['name'], email: params['email'], password: params['password']})
-    redirect "/"
+    mail = params[:email]
+    pass = params[:password]
+    users = User.all
+    users.each do |user|
+      if user[:email] == mail
+        if user[:password] == pass
+          @user = user
+          session[:name] = user[:name]
+          @session =session[:name]
+          return erb :mypage
+        end
+      end
+    end
+    redirect to ('/')
   end
 
 get '/log_out' do
@@ -112,18 +128,9 @@ get '/destroy/:id' do
   redirect '/b'
 end
 
-
-
-
 get '/login' do
   erb :login
 end
-
-
-
-
-
-
 
 get '/mypage' do
 @user = { name: "No User" }
