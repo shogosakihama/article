@@ -27,15 +27,18 @@
 }
 .target-area {
   margin-top: 50px;
+  display:;
 }
+
+
 </style>
 
-<%# serchbox_html %>
+<%# serchbox_css %>
 <body>
   <div class="wrapper">
     <div class="search-area">
       <form>
-        <input type="text" id="search-text" placeholder="検索ワードを入力">
+        <input type="text" id="search-text" placeholder="Title">
       </form>
       <div class="search-result">
         <div class="search-result__hit-num"></div>
@@ -46,28 +49,29 @@
       </div>
     </div>
 
-    <ul class="target-area">
-      <li>
+    <div class="target-area">
+      <table>
+      <a>
         <% @posts.each do |post| %>
            <tr>
-              
               <td><a href='/show/<%= post.id %>'><%=post.title %></a></td>
            </tr>
            <% end %>
-      </li>
-      <li>りんご120円</li>
+      </a>
+        </table>
+      <%# <li>りんご120円</li>
       <li>ばなな100円</li>
       <li>みかん150円</li>
       <li>いちご220円</li>
-      <li>すいか500円</li>
-    </ul>
+      <li>すいか500円</li> %>
+    </div>
   </div><!-- /.wrapper -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
 </body>
 
-<%# serchbox_js %>
+<%# serchbox_css %>
 <script type="text/javascript">
 $(function () {
   searchWord = function(){
@@ -85,7 +89,7 @@ $(function () {
 
     // 検索ボックスに値が入ってる場合
     if (searchText != '') {
-      $('.target-area li').each(function() {
+      $('.target-area a').each(function() {
         targetText = $(this).text();
 
         // 検索対象となるリストに入力された文字列が存在するかどうかを判断
@@ -101,8 +105,9 @@ $(function () {
       }
 
       // ヒットの件数をページに出力
-      hitNum = '<span>検索結果</span>：' + searchResult.length + '件見つかりました。';
-      $('.search-result__hit-num').append(hitNum);
+      // hitNum = '<span>検索結果</span>：' + searchResult.length + '件見つかりました。';
+        //  ⬆︎半端に消してる
+     $('.search-result__hit-num').append(hitNum);
     }
   };
 

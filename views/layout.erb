@@ -15,7 +15,6 @@
   <!-- Bootstrap core CSS -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- typeahead.css -->
 
   
   <!-- Custom styles for this template -->
@@ -44,16 +43,12 @@
           投稿する
           <% end %>
           </a>
+          <li class="nav-item">
+           <a class="nav-link">user: <%= @session %></a>
+          </li>
+
         </li>
-       <p> <%= @posts %></p>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle d-none" href="http://example.com/" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="https://v4-alpha.getbootstrap.com/examples/navbars/#">Action</a>
-            <a class="dropdown-item" href="https://v4-alpha.getbootstrap.com/examples/navbars/#">Another action</a>
-            <a class="dropdown-item" href="https://v4-alpha.getbootstrap.com/examples/navbars/#">Something else here</a>
-          </div>
-        </li>
+       
       </ul>
         <% unless @session then %>
       <button type="button" class="a btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -67,10 +62,22 @@
          <% end %>
       </form>
 
-      <form class="form-inline my-2 my-md-0">
+          <%# 検索ボックス %>
+      <%# <form class="form-inline my-2 my-md-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Title">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      </form> %>
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <a class="dropdown-item" href="#!">Action</a>
+            <a class="dropdown-item" href="#!">Another action</a>
+          </div>
+        </div>
+
     </div>
        <!-- Modal -->
             <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -153,11 +160,15 @@
 
 
 
+
+</body>
+
+
 <!-- Bootstrap core JavaScript
     ================================================== -->
 
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/Navbar Template for Bootstrap_files/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="/Navbar Template for Bootstrap_files/jquery-3.1.1.slim.min.js" integrity="liLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="/Navbar Template for Bootstrap_files/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="/Navbar Template for Bootstrap_files/bootstrap.min.js"></script>
@@ -171,13 +182,11 @@
 
     
 <%# なぜか下記エラ %>
-<%# <gdiv class="ginger-extension-writer" style="display: none;"><gdiv class="ginger-extension-writer-frame"><iframe src="/Navbar Template for Bootstrap_files/index.html"></iframe></gdiv></gdiv> %>
+<gdiv class="ginger-extension-writer" style="display: none;"><gdiv class="ginger-extension-writer-frame"><iframe src="/Navbar Template for Bootstrap_files/index.html"></iframe></gdiv></gdiv>
 
 
 
 
-
-</body>
 
 </html>
 

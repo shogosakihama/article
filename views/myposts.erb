@@ -1,20 +1,19 @@
 
     <div class="container">
-      
+      <h1><%= @session %>の全投稿</h1>
         <div class="col-sm-8 mx-auto">
           <table>
-            <tr><th>タイトル</th><th>ユーザー</th></tr>
+            <tr><th>タイトル</th></tr>
             <% @posts.each do |post| %>
               <tr>
-                  
-                  <td><a href='/show/<%= post.id %>'><%=post.title %>  <%=post.user_name %></a></td>
+                <% if post.user_name == @session %>
+                  <td><a href='/show/<%= post.id %>'><%=post.title %></a></td>
+                <% end %>
               </tr>
               <% end %>
           </table>
           <p>
           <p></p>
-          <p><a href = '/new'>新規メモ</p>
-          </p>
         </div>
       
       

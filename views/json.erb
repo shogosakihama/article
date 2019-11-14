@@ -1,0 +1,30 @@
+<%# <p> <%= @result %> </p> 
+
+<%# <% @result.each do |image| %>
+    <%# <%= image %>
+<%# <% end %> 
+
+<style type="text/css">
+img {
+  transform: scale(2);
+
+  margin: 100px;
+
+}
+</style>
+
+     <form action="/new/:book_name" method="post">
+<button type="submit"><a href = "/new/:book_name"><img src = <%= @result %>></a></button>
+
+     </form>
+
+<img src = <%= @result2 %>>
+<img src = <%= @result3 %>>
+
+      <div>
+          <form action="/json/:book_name" method="post">
+                    <label for="book_name"></label><br>
+                    <input type="text" name="book_name">
+                    <button type="submit">カバー検索</button>
+                </form>
+      </div>

@@ -2,7 +2,7 @@
     <div class="jumbotron">
       <div class="row">    
         <div class="col-sm-5 book">          
-          <img class="image" src="../images/プラネテス_画像イメージ.jpg">
+          <img class="image" src= <%= @result %>>
         </div>
         
         <div class="col-sm-7 book">  
@@ -10,7 +10,7 @@
            <p><%= @post.content %></p>
            <p><a href='/b'>一覧に戻る</a> |
            
-           <% if @session then %>
+           <% if @session == @post.user_name then %>
                 <a href='/edit/<%= @post.id %>'>編集</a> |
                 <a href='/destroy/<%= @post.id %>'>削除</a>
            <% end %>
@@ -18,11 +18,6 @@
        </div> 
       
           <p class="author" style="margin-left:100px;margin-top:10px;"><%= @post.title %></p>
-          <p>
-
-
-           
-              </p>
             </div>
           </div>
       </div>
