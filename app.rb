@@ -4,8 +4,7 @@ require 'erb'
 require 'active_record' #test
 require 'pg'   #test
 require 'sinatra/cookies'
-# require 'action_mailer'
-# require 'English'
+
 enable :sessions
 
 #  json/ruby
@@ -14,6 +13,11 @@ require 'uri'
 require 'json'
 require 'pry'
 
+# mail
+require 'gmail'
+
+
+# mail
 
 
 # --- json/ruby
@@ -32,76 +36,51 @@ class Post < ActiveRecord::Base
 end
 
 class User < ActiveRecord::Base
+  validates :email,:password, presence: true
+end
+
+class Inquirie < ActiveRecord::Base
+  # validates :email,presence: true
 end
 
 
-# ActionMailer::Base.delivery_method = :smtp
-# ActionMailer::Base.smtp_settings = {
-#   address:   'smtp.example.net',
-#   port:      587,
-#   domain:    'example',
-#   user_name: 'KitaitiMakoto',
-#   password:  ($stderr.print 'password> '; gets.chomp)
-# }
-
-# class SampleMailer < ActionMailer::Base
-#   def first_example(body)
-#     mail(
-#       to:      'goshalways@gmail.com',
-#       from:    'goshalways@gmail.com',
-#       subject: 'Mail from SampleMailer',
-#       body:    body.to_s
-#     )
-#   end
-# end
-
-# if File.basename($PROGRAM_NAME) == File.basename(__FILE__)
-#   SampleMailer.first_example('There is a body.').deliver
-# end
 
 get '/json' do
+  @items = []
+  @session =session[:name]
+  erb :json
+end
 
-  
-  # uri = URI.encode("https://www.googleapis.com/books/v1/volumes?q=#{params[:name]}")
-  # uri = URI.parse(uri)
-  # json = Net::HTTP.get(uri)
-  # result = JSON.parse(json)
-
-  # @aa = params[:name]
+post '/json/search' do
+  uri = URI.encode("https://www.googleapis.com/books/v1/volumes?q=#{params[:book_name]}")
+  uri = URI.parse(uri)
+  json = Net::HTTP.get(uri)
+  result = JSON.parse(json)
   @session =session[:name]
   # @result = result["items"].first["volumeInfo"]["imageLinks"]["thumbnail"]
   # @result2 = result["items"].second["volumeInfo"]["imageLinks"]["thumbnail"]
   # @result3 = result["items"].third["volumeInfo"]["imageLinks"]["thumbnail"]
-  ## puts @result
+  # @result4 = result["items"].fourth["volumeInfo"]["imageLinks"]["thumbnail"]
+  # @result5 = result["items"].fifth["volumeInfo"]["imageLinks"]["thumbnail"]
+ 
+  if result["items"] == nil 
+    redirect to ('/json')
+  end
+    @items = result["items"].map do |item|
+      begin
+      item["volumeInfo"]["imageLinks"]["thumbnail"]
+      rescue
+        redirect to ("/json")
+      end
+    end
+  
+
   erb :json
 end
 
-def result 
-  uri = URI.encode("https://www.googleapis.com/books/v1/volumes?q=#{params[:book_name]}")
-  uri = URI.parse(uri)
-  json = Net::HTTP.get(uri)
-  result = JSON.parse(json)
-end
-
-post '/json/:name' do
-  
-  
+post '/new' do
   @session =session[:name]
-  @result = result["items"].first["volumeInfo"]["imageLinks"]["thumbnail"]
-  @result2 = result["items"].second["volumeInfo"]["imageLinks"]["thumbnail"]
-  @result3 = result["items"].third["volumeInfo"]["imageLinks"]["thumbnail"]
-  erb :json
-end
-
-post '/new/:book_name' do
-  uri = URI.encode("https://www.googleapis.com/books/v1/volumes?q=#{params[:book_name]}")
-  uri = URI.parse(uri)
-  json = Net::HTTP.get(uri)
-  result = JSON.parse(json)
-
-  @session =session[:name]
-  @result = result["items"].first["volumeInfo"]["imageLinks"]["thumbnail"]
-  @result_a = 
+  @url = params["url"]
   erb :new
 end
 
@@ -113,22 +92,33 @@ get '/searchbox' do
 end
 
 post '/login' do
+  
   mail = params[:email]
   pass = params[:password]
+    # unless mail.empty? || pass.empty?
    
       users = User.all
       users.each do |user|
+        if user[:email] != nil
           if user[:email] == mail
             if user[:password] == pass
               @user = user
               session[:name] = user[:name]
               @session =session[:name]
               return erb :mypage
+            else 
+              redirect to ('/')
+              # return erb :review
+            
             end
+            redirect to ('/')
+          
           end
-          # redirect to ('/')
+        end
+      
       end
-    
+      redirect to ('/')  
+    erb :test
   end
 
   get '/login' do
@@ -138,23 +128,26 @@ post '/login' do
  
 
   post '/signup' do
-    post = User.create({name: params['name'], email: params['email'], password: params['password']})
-    mail = params[:email]
-    pass = params[:password]
-    users = User.all
-    users.each do |user|
-      if user[:email] != nil
-        if user[:email] == mail
-          if user[:password] == pass
-            @user = user
-            session[:name] = user[:name]
-            @session =session[:name]
-            return erb :mypage
-          end
+    user = User.new
+    # ({name: params['name'], email: params['email'], password: params['password']})
+    user.name = params['name']
+    user.email = params['email']
+    user.password = params['password']
+    begin
+      if user.save
+        
+         session[:name] = params['name']
+         @session =session[:name]
+         return erb :mypage
+       
+         erb :test
         end
+        redirect "/" 
+
+        erb :test
+      rescue
+        redirect "/" 
       end
-      redirect to ('/')
-    end
   end
 
 get '/log_out' do
@@ -167,8 +160,9 @@ end
 #   erb :unsubscribe
 # end
 
-get '/destroy/acount/:name' do
+get '/destroy/acount' do
   @session =session[:name]
+  session[:name] = nil
   User.find_by(name: @session).destroy
   redirect '/'
 end
@@ -184,19 +178,25 @@ post '/log_out' do
 end
 
 post '/create' do
+  # @url = params[:img_url]
   @session =session[:name]
-  @result = result["items"].first["volumeInfo"]["imageLinks"]["thumbnail"]
-  post = Post.create({title: params['title'], content: params['content'], user_name: @session})
-  @img_url = params[:user_name]
+  # @result = result["items"].first["volumeInfo"]["imageLinks"]["thumbnail"]
+  post = Post.create({title: params['title'], content: params['content'], user_name: @session, img_url: params['img_url']})
+
+  # @img_url = params[:book_name]
+  # redirect "/video"
+  ret = sleep 5
+  puts ret
   redirect "/show/#{post.id}"
 end
 
 get '/show/:id' do
-  @result = result["items"].first["volumeInfo"]["imageLinks"]["thumbnail"]
-  @result2 = result["items"].second["volumeInfo"]["imageLinks"]["thumbnail"]
-  @result3 = result["items"].third["volumeInfo"]["imageLinks"]["thumbnail"]
+  # @result = result["items"].first["volumeInfo"]["imageLinks"]["thumbnail"]
+  # @result2 = result["items"].second["volumeInfo"]["imageLinks"]["thumbnail"]
+  # @result3 = result["items"].third["volumeInfo"]["imageLinks"]["thumbnail"]
     @post = Post.find(params['id'])
     @session =session[:name]
+    @image = @url
     erb :show
 end
 
@@ -262,4 +262,44 @@ users.each do |user|
   end
 end
 erb :mypage
+end
+
+
+# get '/video' do
+#   erb :video
+# end
+
+get '/inquiry' do
+  erb :inquiry
+end
+
+
+
+post '/inquiry' do
+  # inquiry = Inquirie.create({email: params['email'], content: params['content']})
+  inquiry = Inquirie.new
+  inquiry.email = params['email']
+  inquiry.content = params['content']
+  if inquiry.save
+      email = params[:email]
+      content = params[:content]
+
+      gmail = Gmail.new('goshalways@gmail.com', 'thokwzqlnksbqtme')
+      ret = gmail.deliver do
+        to "goshalways@gmail.com"
+        from email
+        subject "subject"
+        text_part do
+          body content
+        end
+      end
+    end
+    # redirect to ('/inquiry') 
+    erb :inquiry
+end
+
+
+get '/menu' do
+  @session =session[:name]
+  erb :menu
 end

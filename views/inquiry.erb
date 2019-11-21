@@ -1,0 +1,15 @@
+ <h1>お問い合わせ</h1>
+
+                <form action="/inquiry" method="post">
+                    <%# <input type="hidden" name="img_url" value= <%= @url %>
+                    <label for="email">メールアドレス</label><br>
+                    <input type="text" name="email">
+                    <p></p>
+                    <label for="content">本文</label><br>
+                    <textarea name="content" cols="50" rows="10"></textarea>
+                    <p></p>
+                    <button type="submit" class="btn btn-primary post" data-toggle="modal" data-target="#exampleModal_2">送信する</button>
+                    <a href='/'>キャンセル</a>
+                </form>
+                   <div class="modal" id="exampleModal_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      

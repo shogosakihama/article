@@ -1,13 +1,23 @@
+<style type="text/css">
+.size　{
+height:100%%;
+}
+
+
+</style>
+
+
+
 <div class="container">
-    <div class="jumbotron">
+    <div class="jumbotron jumbotron-extend"　>
       <div class="row">    
         <div class="col-sm-5 book">          
-          <img class="image" src= <%= @result %>>
+          <img style="height:400px; margin-left:50px" class="image" src= <%= @post.img_url %>>
         </div>
         
         <div class="col-sm-7 book">  
            
-           <p><%= @post.content %></p>
+           <p class="size" style="font-size:120%;"><%= @post.content %></p>
            <p><a href='/b'>一覧に戻る</a> |
            
            <% if @session == @post.user_name then %>
@@ -17,7 +27,7 @@
               
        </div> 
       
-          <p class="author" style="margin-left:100px;margin-top:10px;"><%= @post.title %></p>
+          <p class="author" style="margin-left:100px;margin-top:10px;margin-left:110px;font-size:150%;font-weight: bold;"><%= @post.title %></p>
             </div>
           </div>
       </div>

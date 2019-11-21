@@ -1,13 +1,13 @@
 
     <div class="container">
       
-        <div class="col-sm-8 mx-auto">
+        <div class="col-sm-12 mx-auto">
           <table>
             <tr><th>タイトル</th><th>ユーザー</th></tr>
             <% @posts.each do |post| %>
               <tr>
                   
-                  <td><a href='/show/<%= post.id %>'><%=post.title %>  <%=post.user_name %></a></td>
+                  <td width="450" height="0" style="font-size:200%;"><a href='/show/<%= post.id %>'><%=post.title %>  <span style= margin-left:100px;><%=post.user_name %></span></a></td>
               </tr>
               <% end %>
           </table>

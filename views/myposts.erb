@@ -1,13 +1,13 @@
 
     <div class="container">
-      <h1><%= @session %>の全投稿</h1>
+      <h1><%= @session %>さんの全投稿</h1>
         <div class="col-sm-8 mx-auto">
           <table>
             <tr><th>タイトル</th></tr>
             <% @posts.each do |post| %>
               <tr>
                 <% if post.user_name == @session %>
-                  <td><a href='/show/<%= post.id %>'><%=post.title %></a></td>
+                  <td><a style="font-size:200%;" href='/show/<%= post.id %>'><%=post.title %></a></td>
                 <% end %>
               </tr>
               <% end %>

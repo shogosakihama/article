@@ -1,1 +1,10 @@
-<h1>ようこそ！<%= @user[:name] %>さん！</h1>
+<h1>ようこそ！<%= @session %>さん！</h1>
+
+<script>
+
+function clickPage () {
+  window.location.href = '/';
+}
+
+  window.onclick = clickPage;
+</script>

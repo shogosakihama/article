@@ -11,18 +11,21 @@ img {
   margin: 100px;
 
 }
+
+.image_shows {
+  display: inline-block;
+}
 </style>
-
-     <form action="/new/:book_name" method="post">
-<button type="submit"><a href = "/new/:book_name"><img src = <%= @result %>></a></button>
-
+  
+    <% @items.each do |item| %>
+     <form class="image_shows" action="/new" method="post">
+        <input type="hidden" name="url" value="<%= item %>">
+        <button type="submit"><img src = <%= item %>></button>
      </form>
-
-<img src = <%= @result2 %>>
-<img src = <%= @result3 %>>
+    <% end %>
 
       <div>
-          <form action="/json/:book_name" method="post">
+          <form action="/json/search" method="post">
                     <label for="book_name"></label><br>
                     <input type="text" name="book_name">
                     <button type="submit">カバー検索</button>
